@@ -15,11 +15,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-// hapus kode berikut
-//            proguardFiles(
-//                getDefaultProguardFile("proguard-android-optimize.txt"),
-//                "proguard-rules.pro"
-//            )
+
         }
     }
     compileOptions {
