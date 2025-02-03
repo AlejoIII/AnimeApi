@@ -109,3 +109,4 @@ public *;
 -keep class ** {
     @kotlin.Metadata *;
 }
+#-keep class com.yuch.listanime.core.data.source.remote.response.** { *; }

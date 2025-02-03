@@ -1,3 +1,4 @@
+// Version: Android Gradle Plugin 7.0.0
 plugins {
     alias(libs.plugins.android.dynamic.feature)
     alias(libs.plugins.jetbrains.kotlin.android)

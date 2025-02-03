@@ -21,3 +21,4 @@
 #-renamesourcefileattribute SourceFile
 
 -keep class com.yuch.listanime.core.** { *; }
+#-keep class com.google.gson.** { *; }

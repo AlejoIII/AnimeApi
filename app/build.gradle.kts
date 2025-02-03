@@ -1,3 +1,4 @@
+// This is the main build.gradle.kts file for the app module
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
