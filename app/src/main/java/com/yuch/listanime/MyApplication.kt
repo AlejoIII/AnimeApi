@@ -13,6 +13,7 @@ class MyApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@MyApplication)
+            // Inyectamos los módulos
             modules(
                 listOf(
                     databaseModule,

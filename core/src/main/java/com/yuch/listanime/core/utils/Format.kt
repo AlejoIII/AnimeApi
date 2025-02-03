@@ -3,7 +3,7 @@ package com.yuch.listanime.core.utils
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.Locale
-
+// Formatea el número con la configuración regional
 fun formatNumberWithLocale(number: Int?): String {
     val locale = Locale.getDefault()
 
@@ -11,7 +11,7 @@ fun formatNumberWithLocale(number: Int?): String {
 
     return numberFormat.format(number)
 }
-
+// Formatea la fecha
 fun formatDate(dateString: String?): String {
     return if (dateString.isNullOrEmpty()) {
         "N/A"

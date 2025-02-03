@@ -15,12 +15,12 @@ import com.yuch.listanime.detail.DetailAnimeActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
-//    private lateinit var homeViewModel: HomeViewModel
+    // Inyectamos el ViewModel
     private val homeViewModel: HomeViewModel by viewModel()
-
+    // Inicializamos el ViewBinding
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-
+    // Mostramos el Fragment Home
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,7 +29,7 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
-
+    // Mostramos la lista de anime
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -40,10 +40,7 @@ class HomeFragment : Fragment() {
                 intent.putExtra(DetailAnimeActivity.EXTRA_DATA, selectedData)
                 startActivity(intent)
             }
-
-//            val factory = ViewModelFactory.getInstance(requireActivity())
-//            homeViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
-
+            // Observamos el estado del anime
             homeViewModel.anime.observe(viewLifecycleOwner) { anime ->
                 if (anime != null) {
                     when (anime) {
@@ -68,7 +65,7 @@ class HomeFragment : Fragment() {
             }
         }
     }
-
+    // Destruimos la vista
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -17,7 +17,7 @@ class AnimeRepository(
     private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors
 ): IAnimeRepository {
-
+    // Obtenemos los animes de la API y los guardamos en la base de datos local
     override fun getTopAnime(): Flow<Resource<List<Anime>>> =
         object : NetworkBoundResource<List<Anime>, List<AnimeResponse>>(appExecutors) {
             override fun loadFromDB(): Flow<List<Anime>> {
@@ -25,10 +25,10 @@ class AnimeRepository(
                     DataMapper.mapEntitiesToDomain(it)
                 }
             }
-
+            // Obtenemos los animes de la API
             override suspend fun createCall(): Flow<ApiResponse<List<AnimeResponse>>> =
                 remoteDataSource.getTopAnime()
-
+            // Guardamos los animes de la API en la base de datos local
             override suspend fun saveCallResult(data: List<AnimeResponse>) {
                 val animeList = DataMapper.mapResponsesToEntities(data)
                 val currentFavorites = localDataSource.getFavoriteAnime().first()
@@ -46,13 +46,13 @@ class AnimeRepository(
             }
 
         }.asFlow()
-
+    // Obtenemos los animes favoritos de la base de datos local
     override fun getFavoriteAnime(): Flow<List<Anime>> {
         return localDataSource.getFavoriteAnime().map {
             DataMapper.mapEntitiesToDomain(it)
         }
     }
-
+    // Guardamos un anime como favorito en la base de datos local
     override fun setFavoriteAnime(anime: Anime, state: Boolean) {
         val animeEntity = DataMapper.mapDomainToEntity(anime)
         appExecutors.diskIO().execute { localDataSource.setFavoriteAnime(animeEntity, state) }

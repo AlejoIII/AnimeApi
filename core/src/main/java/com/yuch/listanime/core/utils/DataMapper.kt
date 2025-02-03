@@ -5,6 +5,7 @@ import com.yuch.listanime.core.data.source.remote.response.AnimeResponse
 import com.yuch.listanime.core.domain.model.Anime
 
 object DataMapper {
+    // Mapeamos la respuesta de la API a una lista de AnimeEntity para guardar en la base de datos
     fun mapResponsesToEntities(input: List<AnimeResponse>): List<AnimeEntity> {
         val animeList = ArrayList<AnimeEntity>()
         input.map {

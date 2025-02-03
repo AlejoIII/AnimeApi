@@ -9,12 +9,12 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 
 abstract class NetworkBoundResource<ResultType, RequestType>(private val mExecutors: AppExecutors) {
-
+    // Obtenemos los animes de la API y los guardamos en la base de datos local
     private val result: Flow<Resource<ResultType>> = flow {
         emit(Resource.Loading())
-
+        // Obtenemos los animes de la base de datos local
         val dbSource = loadFromDB().first()
-
+        // Si no hay animes en la base de datos local, obtenemos los animes de la API
         if (shouldFetch(dbSource)) {
             emit(Resource.Loading())
 

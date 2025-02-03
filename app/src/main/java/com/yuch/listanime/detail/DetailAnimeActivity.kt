@@ -14,8 +14,9 @@ import com.yuch.listanime.databinding.ActivityDetailAnimeBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailAnimeActivity : AppCompatActivity() {
+    // Inicializamos el ViewBinding
     private lateinit var binding: ActivityDetailAnimeBinding
-//    private lateinit var detailAnimeViewModel: DetailAnimeViewModel
+    // Inyectamos el ViewModel
     private val detailAnimeViewModel: DetailAnimeViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,21 +24,18 @@ class DetailAnimeActivity : AppCompatActivity() {
         binding = ActivityDetailAnimeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        setSupportActionBar(binding.toolbar)
 
-//        val factory = ViewModelFactory.getInstance(this)
-//        detailAnimeViewModel = ViewModelProvider(this, factory)[DetailAnimeViewModel::class.java]
-
+        // Obtenemos el anime seleccionado
         val detailAnime = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent.getParcelableExtra(EXTRA_DATA, Anime::class.java)
         } else {
             @Suppress("DEPRECATION")
             intent.getParcelableExtra(EXTRA_DATA)
         }
-
+        // Mostramos el detalle del anime
         showDetailAnime(detailAnime)
     }
-
+    // Mostramos el detalle del anime
     private fun showDetailAnime(detailAnime: Anime?) {
         detailAnime?.let {
             supportActionBar?.title = detailAnime.title
@@ -45,17 +43,17 @@ class DetailAnimeActivity : AppCompatActivity() {
                 Glide.with(this@DetailAnimeActivity)
                     .load(detailAnime.imageUrl)
                     .into(ivDetailImage)
-
+                // Verificamos si el anime es favorito
                 var statusFavorite: Boolean = detailAnime.isFavorite
                 setStatusFavorite(statusFavorite)
                 Log.d("DetailAnimeActivity", "Setting favorite: ${detailAnime.title}, state: $statusFavorite")
-
+                // Cambiamos el estado del anime favorito
                 fab.setOnClickListener {
                     statusFavorite = !statusFavorite
                     detailAnimeViewModel.setFavoriteAnime(detailAnime, statusFavorite)
                     setStatusFavorite(statusFavorite)
                 }
-
+                // Mostramos la información del anime
                 content.tvScoreValue.text = detailAnime.score.toString()
 
                 val rank = "Rank ${detailAnime.rank}"
@@ -87,7 +85,7 @@ class DetailAnimeActivity : AppCompatActivity() {
             }
         }
     }
-
+    // Cambiamos el estado del anime favorito
     private fun setStatusFavorite(statusFavorite: Boolean) {
         if (statusFavorite) {
             binding.fab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite_white))

@@ -5,6 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Anime(
+    // Atributos de la clase Anime
     val malId: Int?,
     val title: String?,
     val titleJapanese: String?,

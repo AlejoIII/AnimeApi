@@ -9,11 +9,12 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val useCaseModule = module {
+    // Inyectamos el UseCase
     factory<AnimeUseCase> { AnimeInteractor(get()) }
 }
 
 val viewModelModule = module {
+    // Inyectamos el ViewModel
     viewModel { HomeViewModel(get()) }
-//    viewModel { FavoriteViewModel(get()) }
     viewModel { DetailAnimeViewModel(get()) }
 }

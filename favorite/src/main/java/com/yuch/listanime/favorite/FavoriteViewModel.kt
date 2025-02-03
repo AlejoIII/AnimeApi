@@ -7,6 +7,6 @@ import com.yuch.listanime.core.domain.model.Anime
 import com.yuch.listanime.core.domain.usecase.AnimeUseCase
 
 class FavoriteViewModel(animeUseCase: AnimeUseCase) : ViewModel() {
-
+    // Obtenemos la lista de animes favoritos
     val favoriteAnime: LiveData<List<Anime>> = animeUseCase.getFavoriteAnime().asLiveData()
 }

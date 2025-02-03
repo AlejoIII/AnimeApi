@@ -3,7 +3,7 @@ package com.yuch.listanime.core.data.source.remote.response
 import com.google.gson.annotations.SerializedName
 
 data class AnimeResponse(
-
+	// Atributos de la clase AnimeResponse
     @field:SerializedName("title_japanese")
 	val titleJapanese: String? = null,
 

@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
 class RemoteDataSource(private val apiService: ApiService){
-
+    // Obtenemos los animes de la API
     suspend fun getTopAnime(): Flow<ApiResponse<List<AnimeResponse>>> {
         return flow {
             try {

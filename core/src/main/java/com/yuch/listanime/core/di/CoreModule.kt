@@ -18,7 +18,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-
+// Módulo de inyección de dependencias
 val databaseModule = module {
     factory { get<AnimeDatabase>().animeDao() }
     single {
@@ -57,6 +57,7 @@ val networkModule = module {
         retrofit.create(ApiService::class.java)
     }
 }
+
 val repositoryModule = module {
     single { LocalDataSource(get()) }
     single { RemoteDataSource(get()) }

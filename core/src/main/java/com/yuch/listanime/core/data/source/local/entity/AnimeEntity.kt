@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey
 @Entity (tableName = "anime")
 data class AnimeEntity(
     @PrimaryKey
+    // Estas propiedades son las que se guardan en la base de datos
     val malId: Int?,
     val title: String?,
     val titleJapanese: String?,

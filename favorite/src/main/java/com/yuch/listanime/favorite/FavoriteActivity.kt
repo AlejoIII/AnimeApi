@@ -15,16 +15,16 @@ class FavoriteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFavoriteBinding
     private val favoriteViewModel: FavoriteViewModel by viewModel()
     private lateinit var animeAdapter: AnimeAdapter
-
+    // Inicializamos el módulo de favoritos
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFavoriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        // Cambiamos el título de la barra de acción
         supportActionBar?.title = "Favorite"
-
+        // Cargamos el módulo de favoritos
         loadKoinModules(favoriteModule)
-
+        // Inicializamos el adaptador
         animeAdapter = AnimeAdapter()
         animeAdapter.onItemClick = { selectedData ->
             val intent = Intent(this@FavoriteActivity, DetailAnimeActivity::class.java)
@@ -34,7 +34,7 @@ class FavoriteActivity : AppCompatActivity() {
 
         setupRecyclerView()
     }
-
+    // Configuramos el RecyclerView
     private fun setupRecyclerView() {
         with(binding.rvAnime) {
             layoutManager = LinearLayoutManager(context)
@@ -42,7 +42,7 @@ class FavoriteActivity : AppCompatActivity() {
             adapter = animeAdapter
         }
     }
-
+    // Actualizamos la lista de favoritos
     override fun onResume() {
         super.onResume()
 
